@@ -10,23 +10,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 </head>
 
-<body>
+<body background='2.jpg' style="background-repeat:no-repeat;background-size:100% 100%;background-attachment: fixed;">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <div class="container">
-        <div class="row">
-            <div class="col-1">
-            </div>
-            <div class="col-10">
-                <?php
-                include('db.php');
-                $sql = "select * from message order by `msg_id` desc";
-                $msg_data = read_msg($pdo, $sql); //读取留言信息
-                ?>
-                <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-                    <a id='time' class="navbar-brand" href="#">
-                        <?php
-                        echo '
+
+    <div class="row" style="background-color:rgba(255,238,156,0.4);">
+        <div class="col-2"> </div>
+        <div class="col-8" style="background-color:rgba(255,238,156,0.5);">
+            <?php
+            include('db.php');
+            $sql = "select * from message order by `msg_id` desc";
+            $msg_data = read_msg($pdo, $sql); //读取留言信息
+            ?>
+            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <a id='time' class="navbar-brand" href="#">
+                    <?php
+                    echo '
                         <script type="text/javascript">
                             function showtime() {
                                 var time = new Date(); //获取系统当前时间
@@ -61,64 +60,71 @@
                             }
                             showtime();
                         </script>';
+                    ?>
+                </a>
+                <span class="navbar-text text-right">欢迎来到B612小行星，您是本星球第
+                    <span class="navbar-text text-right font-weight-bolder ">
+                        <?php
+                        $visit_no = visit_sum($pdo)[0];
+                        echo "$visit_no[0]";
                         ?>
-                    </a>
-                    <span class="navbar-text text-right">欢迎来到B612星球，您是本行星第
-                        <span class="navbar-text text-right font-weight-bolder ">
-                            <?php
-                            $visit_no = visit_sum($pdo)[0];
-                            echo "$visit_no[0]";
-                            ?>
-                        </span>
-                        <span class="navbar-text text-right">位访客</span>
-                </nav>
-                <form action="save.php" method="post">
+                    </span>
+                    <span class="navbar-text text-right">位访客</span>
+            </nav>
+            <div class="row">
+                <div class="col-12">
+                <h5 class="text-right font-italic text-warning">
+                    <?php echo "————".random_quote(); ?>
+                </h5>
+                </div>
+            </div>
+            <form action="save.php" method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <textarea name="content" type="text" class="form-control" rows="4" placeholder="说点什么叭..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <input name="username" type="text" class="form-control" placeholder="这里输入昵称哦">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary">发表</button>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </form>
+
+            <?php
+            foreach ($msg_data as $key => $msg) {
+            ?>
+                <div class="border rounded p-2 mb-2">
                     <div class="row">
                         <div class="col-12">
-                            <div class="form-group">
-                                <textarea name="content" type="text" class="form-control" rows="4" placeholder="说点什么叭..."></textarea>
-                            </div>
+                            <?php echo $msg['content']; ?>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <input name="username" type="text" class="form-control" placeholder="这里输昵称哦">
-                            </div>
+                        <div class="text-primary col-4">
+                            <?php echo $msg['username']; ?>
                         </div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary">发表</button>
+                        <div class="text-primary col-4">
+                            <?php echo $msg['s_date']; ?>
                         </div>
                     </div>
-                    <div style="clear:both;"></div>
-                </form>
 
-                <?php
-                foreach ($msg_data as $key => $msg) {
-                ?>
-                    <div class="border rounded p-2 mb-2">
-                        <div class="row">
-                            <div class="col-12">
-                                <?php echo $msg['content']; ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="text-primary col-4">
-                                <?php echo $msg['username']; ?>
-                            </div>
-                            <div class="text-primary col-4">
-                                <?php echo $msg['s_date']; ?>
-                            </div>
-                        </div>
+                </div>
 
-                    </div>
-
-                <?php
-                }
-                ?>
-            </div>
-            <div class="col-1"></div>
+            <?php
+            }
+            ?>
         </div>
+        <div class="col-2"></div>
+    </div>
 </body>
 
 </html>

@@ -34,4 +34,13 @@
         $t_visit_no = $t_visit->fetchall();
         return $t_visit_no;
     }
+    function random_quote(){
+        $l_num = rand(1,16);
+        $filename = "ThelittlePrince.txt";
+        $file = fopen($filename,"r");
+        for ($i = 0; $i < $l_num; $i++){
+            $quote = fgets($file);
+        }
+        return $quote;
+    }
 ?>
