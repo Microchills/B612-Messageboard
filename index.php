@@ -13,8 +13,7 @@
 <body background='2.jpg' style="background-repeat:no-repeat;background-size:100% 100%;background-attachment: fixed;">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <div class="row" style="background-color:rgba(255,238,156,0.4);">
+    <div class="row border rounded" style="background-color:rgba(255,238,156,0.4);">
         <div class="col-2"> </div>
         <div class="col-8" style="background-color:rgba(255,238,156,0.5);">
             <?php
