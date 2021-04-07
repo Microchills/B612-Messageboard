@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 </head>
 
-<body background='2.jpg' style="background-repeat:no-repeat;background-size:100% 100%;background-attachment: fixed;">
+<body background='bg.jpg' style="background-repeat:no-repeat;background-size:100% 100%;background-attachment: fixed;">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     <div class="row border rounded" style="background-color:rgba(255,238,156,0.4);">

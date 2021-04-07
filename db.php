@@ -18,7 +18,11 @@
     //判断输入是否合格
     function check_input($input){
         if (trim($input) == ''){
-            echo '空不能';
+            echo"
+                <script type='text/javascript'>
+                    alert('看看是不是忘记什么了？');
+                    history.back();
+                </script>";
             exit;
         }
     }
